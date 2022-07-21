@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project_2/model/user_model.dart';
 import 'package:project_2/screens/authenticate/login_screen.dart';
+import 'package:project_2/screens/profile/about_us.dart';
 import 'package:project_2/services/auth.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -104,7 +104,7 @@ class _ProfileState extends State<Profile> {
                 child: Column(
                   children: [
                     Container(
-                      color: Colors.grey,
+                      color: Colors.purple,
                       child: SizedBox(
                         width: double.infinity,
                         child: Column(
@@ -116,6 +116,7 @@ class _ProfileState extends State<Profile> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   ElevatedButton(
+                                    style: ElevatedButton.styleFrom(primary: Colors.black),
                                     onPressed: () { 
                                       logout(context);
                                     },
@@ -148,55 +149,19 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 20),
                     Text('Latitude : ${geoPoint!.latitude}'),
                     Text('Longitude : ${geoPoint.longitude}'),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Biodata',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => ChangeBio(biodata: biodata));
-                            })
-                      ],
-                    ),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(40, 10, 40, 20),
-                        child: Text(biodata ?? "Inert your biodata")),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Interest',
-                            style: TextStyle(fontWeight: FontWeight.bold)),
-                        IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => ChangeInterest(
-                                      interest1: interest1,
-                                      interest2: interest2,
-                                      interest3: interest3));
-                            })
-                      ],
-                    ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 30),
                     InkWell(
                       onTap: () {
-                        launchUrl(Uri.parse('https://github.com/AsyrafRoslan'));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => AboutUs()));
                       },
                       child: Container(
                         padding: EdgeInsets.fromLTRB(100, 10, 100, 10),
                         decoration: BoxDecoration(
-                          color: Colors.blueAccent,
-                          border: Border.all(color: Colors.black, width: 2),
+                          color: Colors.purple,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
-                          'ABOUT ME',
+                          'ABOUT US',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w600,
